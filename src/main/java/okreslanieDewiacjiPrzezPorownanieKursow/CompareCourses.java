@@ -8,6 +8,7 @@ public class CompareCourses implements Methods {
     double ccn, ccne, cce, ccse, ccs, ccsw, ccw, ccnw;
     double d;
     double DEVn, DEVne, DEVe, DEVse, DEVs, DEVsw, DEVw, DEVnw;
+    double factorA, factorB, factorC, factorD, factorE;
 
     @Override
     public void introduction() {
@@ -30,19 +31,19 @@ public class CompareCourses implements Methods {
             System.out.println("Insert value of variation: ");
             d = sc.nextDouble();
         } catch (InputMismatchException e) {
-            System.out.println(e.getMessage() + " Wrong imput. Insert numbers not text");
+            System.out.println(e.getMessage() + " Wrong input. Insert correct value");
         }
     }
     //TODO - regex dla przecinka ',' - poprawnie, kropka '.' - nie poprawnie
     //TODO - zrobic aby metoda odpalala sie ponownie, mimo wprowadzonej zlej wartosci
 
     @Override
-    public void insertCompasCourses() {
+    public void insertCompassCourses() {
         try {
             System.out.println("\nInsert Compas Course for each cardinal course: ");
             System.out.println("CC for " + TrueCourses.N + " TC: ");
             ccn = sc.nextDouble();
-            System.out.println("CC for " + TrueCourses.NE +" TC: ");
+            System.out.println("CC for " + TrueCourses.NE + " TC: ");
             ccne = sc.nextDouble();
             System.out.println("CC for " + TrueCourses.E + " TC: ");
             cce = sc.nextDouble();
@@ -62,6 +63,7 @@ public class CompareCourses implements Methods {
     }
     //TODO - SPROBOWAC ZROBIC TO W PETLI, A NIE RECZNIE
     //TODO - mozna wprowadzic max 3 znaki od 0-9 !!!
+    //TODO - zrobic aby metoda odpalala sie ponownie, mimo wprowadzonej zlej wartosci, tak jak w metodzie insertVariation();
 
     @Override
     public void calculateDeviationForCardinalCourses() {
@@ -75,6 +77,7 @@ public class CompareCourses implements Methods {
         DEVnw = (TrueCourses.NW.value - ccnw) - d;
     }
     //TODO - TAK JAK W ENUM, MUSZE ZAMIENISC WARTOSCI NA STOPNIE, a przynajmniej zaokraglic wyniki...
+    //TODO - ROZWIAZAC PROBLEM! Np. 350 + 40 = 030 a nie 390!
 
     @Override
     public void displayDeviationForCardinalCourses() {
@@ -88,4 +91,41 @@ public class CompareCourses implements Methods {
         System.out.println(TrueCourses.W + " = " + DEVw);
         System.out.println(TrueCourses.NW + " = " + DEVnw);
     }
+
+    @Override
+    public final void calculateFactorA() {
+        factorA = (DEVn + DEVne + DEVe + DEVse + DEVs + DEVsw + DEVw + DEVnw) / 8;
+    }
+
+    @Override
+    public final void calculateFactorB() {
+        factorB = (DEVe - DEVw) / 2;
+    }
+
+    @Override
+    public final void calculateFactorC() {
+        factorC = (DEVn - DEVs) / 2;
+    }
+
+    @Override
+    public final void calculateFactorD() {
+        factorD = ((DEVne + DEVsw) - (DEVse + DEVnw)) / 4;
+    }
+
+    @Override
+    public final void calculateFactorE() {
+        factorE = ((DEVn + DEVs) - (DEVe + DEVw)) / 4;
+    }
+//TODO - zrobic testy jednostkowe do metod calculateFactorS
+
+    @Override
+    public void displayFactors() {
+        System.out.println("Factor A = " + factorA +
+                "\nFactor B = " + factorB +
+                "\nFactor C = " + factorC +
+                "\nFactor D = " + factorD +
+                "\nFactor E = " + factorE);
+    }
+
+
 }

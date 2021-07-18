@@ -2,7 +2,7 @@ package magneticVariation;
 
 public class DemoSystemOkrezny {
     double zero = 0;
-    double trzystaSzescdziesiat = 360;
+    double N = 360;
     double a;
     double b;
     double finalResult;
