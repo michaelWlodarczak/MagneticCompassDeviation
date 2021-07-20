@@ -67,7 +67,7 @@ public class CompareCourses implements Methods {
 
     @Override
     public void calculateDeviationForCardinalCourses() {
-        DEVn = (TrueCourses.N.value - ccn) - d;
+        DEVn = (TrueCourses.N.value - ccn) - d; //TODO! Obliczanie wartosci dla DEVn jest zle! koniecznie sprawdzic, dla innych kursów
         DEVne = (TrueCourses.NE.value - ccne) - d;
         DEVe = (TrueCourses.E.value - cce) - d;
         DEVse = (TrueCourses.SE.value - ccse) - d;
@@ -116,7 +116,6 @@ public class CompareCourses implements Methods {
     public final void calculateFactorE() {
         factorE = ((DEVn + DEVs) - (DEVe + DEVw)) / 4;
     }
-//TODO - zrobic testy jednostkowe do metod calculateFactorS
 
     @Override
     public void displayFactors() {
